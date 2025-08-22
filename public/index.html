@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindMapper - Generador de Mapas Mentales</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-brain"></i>
+                <div>
+                    <h1>MindMapper</h1>
+                    <p class="subtitle">Transforma tus textos y temas en mapas mentales interactivos. Organiza ideas, mejora tu aprendizaje y personaliza tus diagramas.</p>
+                </div>
+            </div>
+        </header>
+        
+        <div class="main-content">
+            <div class="input-section">
+                <h2 class="section-title"><i class="fas fa-edit"></i> Generar Mapa</h2>
+                
+                <div class="input-group">
+                    <label for="inputType">Selecciona el tipo de entrada:</label>
+                    <select id="inputType">
+                        <option value="topic">Ingresar un tema</option>
+                        <option value="text">Pegar un texto</option>
+                    </select>
+                </div>
+                
+                <div class="input-group" id="topicInput">
+                    <label for="topic">Tema del mapa mental:</label>
+                    <input type="text" id="topic" placeholder="Ej: Sistema Solar, Fotosíntesis, Revolución Industrial">
+                </div>
+                
+                <div class="input-group" id="textInput" style="display: none;">
+                    <label for="content">Pega tu texto aquí (hasta 10,000 caracteres):</label>
+                    <textarea id="content" placeholder="Pega tu resumen, apuntes o texto aquí..."></textarea>
+                    <div class="character-count"><span id="charCount">0</span>/10000 caracteres</div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="mapType">Tipo de Mapa Mental:</label>
+                    <select id="mapType">
+                        <option value="tree">Mapa de Árbol</option>
+                        <option value="synoptic">Cuadro Sinóptico</option>
+                        <option value="comparative">Mapa Comparativo</option>
+                        <option value="conceptual">Mapa Conceptual</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label>Tamaño de la Pizarra:</label>
+                    <div class="page-size">
+                        <div class="page-option active" data-size="infinite">Infinito</div>
+                        <div class="page-option" data-size="a4">A4</div>
+                        <div class="page-option" data-size="a3">A3</div>
+                        <div class="page-option" data-size="letter">Carta</div>
+                    </div>
+                </div>
+                
+                <button id="generateBtn">
+                    <i class="fas fa-magic"></i> Generar Mapa Mental
+                </button>
+                
+                <div class="examples">
+                    Ejemplos: 
+                    <span data-topic="Sistema Solar">Sistema Solar</span>
+                    <span data-topic="Fotosíntesis">Fotosíntesis</span>
+                    <span data-topic="Revolución Francesa">Revolución Francesa</span>
+                </div>
+            </div>
+            
+            <div class="canvas-section">
+                <h2 class="section-title"><i class="fas fa-project-diagram"></i> Pizarra Interactiva</h2>
+                
+                <div class="canvas-container">
+                    <div class="loading" id="loading" style="display: none;">
+                        <div class="spinner"></div>
+                        <p>Generando tu mapa mental...</p>
+                        <p class="info">Esto puede tomar unos segundos</p>
+                    </div>
+                    
+                    <div id="mindmap">
+                        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; text-align: center; padding: 20px;">
+                            <i class="fas fa-lightbulb" style="font-size: 5rem; color: #e0e0e0; margin-bottom: 20px;"></i>
+                            <h3 style="color: #a0a0a0; margin-bottom: 15px;">Tu mapa mental aparecerá aquí</h3>
+                            <p style="color: #b0b0b0; max-width: 400px;">Ingresa un tema o texto a la izquierda y haz clic en "Generar Mapa Mental" para comenzar.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-panel">
+                        <h3><i class="fas fa-info-circle"></i> Cómo usar</h3>
+                        <p>• Arrastra los nodos para reorganizar tu mapa<br>
+                        • Haz clic en un nodo para editar su contenido<br>
+                        • Usa los botones de herramientas para agregar o eliminar elementos</p>
+                    </div>
+                </div>
+                
+                <div class="tools">
+                    <div class="tool-btn" id="addNodeBtn">
+                        <i class="fas fa-plus-circle"></i> Añadir Nodo
+                    </div>
+                    <div class="tool-btn" id="addConnectionBtn">
+                        <i class="fas fa-arrow-right"></i> Añadir Conexión
+                    </div>
+                    <div class="tool-btn delete" id="deleteBtn">
+                        <i class="fas fa-trash-alt"></i> Eliminar Elemento
+                    </div>
+                    <div class="tool-btn" id="downloadBtn">
+                        <i class="fas fa-download"></i> Descargar
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>MindMapper - Generador de Mapas Mentales Interactivos | Para estudiantes y educadores</p>
+            <p>Usa esta herramienta para organizar ideas, estudiar temas complejos y mejorar tu aprendizaje</p>
+        </footer>
+    </div>
+        <script src="app.js"></script>
+    </body>
+</html>
