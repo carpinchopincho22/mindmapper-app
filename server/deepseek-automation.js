@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const { formatPrompt, parseDeepSeekResponse } = require('./utils');
 
 // Función principal para obtener un mapa mental desde DeepSeek
 async function getMindMapFromDeepSeek(topic, mapType) {

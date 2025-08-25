@@ -2,10 +2,26 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+
+// Configuración específica para Render
+const puppeteer = require('puppeteer');
+const browserConfig = process.env.NODE_ENV === 'production' ? {
+  executablePath: process.env.CHROMIUM_PATH || '/usr/bin/chromium-browser',
+  args: [
+    '--no-sandbox',
+    '--disable-setuid-sandbox',
+    '--disable-dev-shm-usage',
+    '--disable-gpu',
+    '--single-process'
+  ]
+} : {};
+
 const { generateMindMap } = require('./mindmap-generator');
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+// Render usa un puerto diferente, por eso usamos process.env.PORT
 
 // Añade estas líneas para verificar las variables de entorno
 console.log('🔧 Configuración cargada:');
